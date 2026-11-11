@@ -7,7 +7,7 @@ Landing page and entry system for the Permetheon Website Giveaway Campaign.
 - React + TypeScript frontend
 - Supabase PostgreSQL database
 - Supabase Auth for the admin panel
-- Vercel deployment
+- Hostinger deployment
 - Production domain: giveaway.permetheon.com
 
 ## Project areas
@@ -27,3 +27,4 @@ The initial campaign blueprint is available in `Permetheon_US_Giveaway_Campaign_
 - Do not commit `.env` files or service-role keys.
 - Public visitors must not be able to read giveaway entries.
 - Admin data access must be protected by Supabase Auth and Row Level Security.
+

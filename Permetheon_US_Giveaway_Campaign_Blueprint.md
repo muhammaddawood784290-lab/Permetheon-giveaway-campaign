@@ -134,3 +134,4 @@ Open items: legal entity, campaign URL/contact, exact dates, rules/exclusions, p
 
 This blueprint is an operational plan, not legal advice. Jurisdiction-specific counsel should approve the rules, privacy and consent language, eligibility, promotion mechanics, advertising disclosures, and tax/reporting treatment before publication.
 
+
