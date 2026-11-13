@@ -15,13 +15,20 @@ SUPABASE_EDGE_FUNCTION_URL=
 SUPABASE_EDGE_FUNCTION_URL is the full URL of the deployed Edge Function, for example:
 https://uvrcqzprhofotirzadso.supabase.co/functions/v1/submit-giveaway
 
+The public submit-giveaway function is a Supabase Edge Function deployed with auth mode "none" and verify_jwt = false. Browser code calls it with the project's publishable key on the `apikey` header. The service-role key is used only inside the function.
+
 ## Admin variables (server-side only)
 
 SUPABASE_SERVICE_ROLE_KEY=
 ADMIN_ALLOWLIST=
 
-Service-role keys must exist only in trusted server-side configuration (the Supabase
-Edge Function and any admin Edge Functions) and must never be exposed to browser code.
+The submit-giveaway Edge Function reads `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` from the Supabase project secret store (Deno.env.get). Those secrets live in the Supabase project only and are never committed or exposed to browser code.
+
+The public Edge Function is invoked with the project's publishable key from the browser; the service-role key is used only server-side for the database insert.
+
+Admin variables (server-side only):
+- SUPABASE_SERVICE_ROLE_KEY — for admin Edge Functions / server-side admin code only
+- ADMIN_ALLOWLIST — approved admin identities for authorization (preferred over app_metadata where used)
 
 ## Local development
 

@@ -9,11 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as Admin_rootRouteImport } from './routes/admin/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GiveawayRouteImport } from './routes/giveaway'
+import { Route as AdminEntriesRouteImport } from './routes/admin/entries'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as LegalPrivacyRouteImport } from './routes/legal/privacy'
 import { Route as LegalRulesRouteImport } from './routes/legal/rules'
+import { Route as AdminEntriesIdRouteImport } from './routes/admin/entries/$id'
 
+const Admin_rootRoute = Admin_rootRouteImport.update({
+  id: '/admin/__root',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -22,6 +30,16 @@ const IndexRoute = IndexRouteImport.update({
 const GiveawayRoute = GiveawayRouteImport.update({
   id: '/giveaway',
   path: '/giveaway',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEntriesRoute = AdminEntriesRouteImport.update({
+  id: '/admin/entries',
+  path: '/admin/entries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
@@ -34,43 +52,95 @@ const LegalRulesRoute = LegalRulesRouteImport.update({
   path: '/legal/rules',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminEntriesIdRoute = AdminEntriesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminEntriesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/giveaway': typeof GiveawayRoute
+  '/admin': typeof Admin_rootRoute
+  '/admin/entries': typeof AdminEntriesRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/rules': typeof LegalRulesRoute
+  '/admin/entries/$id': typeof AdminEntriesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/giveaway': typeof GiveawayRoute
+  '/admin': typeof Admin_rootRoute
+  '/admin/entries': typeof AdminEntriesRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/rules': typeof LegalRulesRoute
+  '/admin/entries/$id': typeof AdminEntriesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/giveaway': typeof GiveawayRoute
+  '/admin/__root': typeof Admin_rootRoute
+  '/admin/entries': typeof AdminEntriesRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/rules': typeof LegalRulesRoute
+  '/admin/entries/$id': typeof AdminEntriesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/giveaway' | '/legal/privacy' | '/legal/rules'
+  fullPaths:
+    | '/'
+    | '/giveaway'
+    | '/admin'
+    | '/admin/entries'
+    | '/admin/login'
+    | '/legal/privacy'
+    | '/legal/rules'
+    | '/admin/entries/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/giveaway' | '/legal/privacy' | '/legal/rules'
-  id: '__root__' | '/' | '/giveaway' | '/legal/privacy' | '/legal/rules'
+  to:
+    | '/'
+    | '/giveaway'
+    | '/admin'
+    | '/admin/entries'
+    | '/admin/login'
+    | '/legal/privacy'
+    | '/legal/rules'
+    | '/admin/entries/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/giveaway'
+    | '/admin/__root'
+    | '/admin/entries'
+    | '/admin/login'
+    | '/legal/privacy'
+    | '/legal/rules'
+    | '/admin/entries/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GiveawayRoute: typeof GiveawayRoute
+  Admin_rootRoute: typeof Admin_rootRoute
+  AdminEntriesRoute: typeof AdminEntriesRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
   LegalPrivacyRoute: typeof LegalPrivacyRoute
   LegalRulesRoute: typeof LegalRulesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/admin/__root': {
+      id: '/admin/__root'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof Admin_rootRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -83,6 +153,20 @@ declare module '@tanstack/react-router' {
       path: '/giveaway'
       fullPath: '/giveaway'
       preLoaderRoute: typeof GiveawayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/entries': {
+      id: '/admin/entries'
+      path: '/admin/entries'
+      fullPath: '/admin/entries'
+      preLoaderRoute: typeof AdminEntriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legal/privacy': {
@@ -99,12 +183,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalRulesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/entries/$id': {
+      id: '/admin/entries/$id'
+      path: '/$id'
+      fullPath: '/admin/entries/$id'
+      preLoaderRoute: typeof AdminEntriesIdRouteImport
+      parentRoute: typeof AdminEntriesRoute
+    }
   }
 }
+
+interface AdminEntriesRouteChildren {
+  AdminEntriesIdRoute: typeof AdminEntriesIdRoute
+}
+
+const AdminEntriesRouteChildren: AdminEntriesRouteChildren = {
+  AdminEntriesIdRoute: AdminEntriesIdRoute,
+}
+
+const AdminEntriesRouteWithChildren = AdminEntriesRoute._addFileChildren(
+  AdminEntriesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GiveawayRoute: GiveawayRoute,
+  Admin_rootRoute: Admin_rootRoute,
+  AdminEntriesRoute: AdminEntriesRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
   LegalPrivacyRoute: LegalPrivacyRoute,
   LegalRulesRoute: LegalRulesRoute,
 }

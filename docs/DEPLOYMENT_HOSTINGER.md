@@ -41,8 +41,12 @@ build still completes, but it is not served on Hostinger.
    intended Supabase project.
 2. Confirm RLS is enabled and the `anon` role can INSERT but cannot SELECT/UPDATE/DELETE.
 3. Deploy the `submit-giveaway` Edge Function to the Supabase project.
-4. Set `SUPABASE_URL` and `SUPABASE_EDGE_FUNCTION_URL` in the Hostinger environment
-   configuration. Never commit real values.
+4. Set `SUPABASE_EDGE_FUNCTION_URL` in the Hostinger environment configuration so the static
+   frontend can call the deployed public Edge Function.
+   `SUPABASE_URL` is not required by the public form client for submission, but keep it
+   in case other tooling depends on it. Never commit real values.
+   The public function is invoked with the project's publishable key from the browser;
+   the service-role key remains in the Supabase project only.
 
 ### Hostinger side
 

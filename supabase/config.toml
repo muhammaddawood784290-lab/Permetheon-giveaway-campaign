@@ -1,1 +1,4 @@
-project_id = "uvrcqzprhofotirzadso"
+project_id = "aznldzafansjgfcxnntj"
+
+[functions.submit-giveaway]
+verify_jwt = false

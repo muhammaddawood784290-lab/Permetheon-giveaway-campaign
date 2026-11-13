@@ -8,16 +8,26 @@ declare global {
 }
 
 /**
- * Submit a giveaway entry directly to the Supabase Edge Function.
+ * Submit a giveaway entry directly to the public Supabase Edge Function.
  *
  * This is a client-side function because the Hostinger deployment target is
  * static-only — TanStack Start server functions cannot run there. The Edge
  * Function (supabase/functions/submit-giveaway) handles server-side validation,
  * spam protection, and database insertion with the service-role key.
  *
- * Environment variables:
- * - SUPABASE_URL or window.__SUPABASE_URL
+ * The browser calls the public Edge Function with the project's publishable key
+ * on the `apikey` header. The service-role key is never used in this file and
+ * never exposed to the browser.
+ *
+ * Required public configuration:
  * - SUPABASE_EDGE_FUNCTION_URL or window.__SUPABASE_EDGE_FUNCTION_URL
+ *
+ * Optional config (used only for the “not configured” guard, not for the call):
+ * - SUPABASE_URL or window.__SUPABASE_URL
+ *
+ * When the Edge Function URL is missing or the function is unreachable, this
+ * throws a generic, user-safe error so the frontend can show a controlled
+ * “submission is currently unavailable” message instead of leaking internals.
  */
 export async function submitGiveawayEntry(payload: {
   fullName: string;
@@ -34,17 +44,13 @@ export async function submitGiveawayEntry(payload: {
   company_website: string;
   startedAt: number;
 }) {
-  const supabaseUrl =
-    process.env["SUPABASE_URL"] ||
-    (typeof window !== "undefined" ? window.__SUPABASE_URL : undefined) ||
-    "";
   const edgeFunctionUrl =
     process.env["SUPABASE_EDGE_FUNCTION_URL"] ||
     (typeof window !== "undefined" ? window.__SUPABASE_EDGE_FUNCTION_URL : undefined) ||
     "";
 
-  if (!supabaseUrl || !edgeFunctionUrl) {
-    throw new Error("Giveaway submission is not configured.");
+  if (!edgeFunctionUrl) {
+    throw new Error("Giveaway submission is currently unavailable.");
   }
 
   // Client-side spam pre-check: if honeypot is filled or submitted implausibly fast,
@@ -55,11 +61,18 @@ export async function submitGiveawayEntry(payload: {
     return { ok: true };
   }
 
-  const response = await fetch(edgeFunctionUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  let response: Response;
+  try {
+    response = await fetch(edgeFunctionUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch {
+    throw new Error("Giveaway submission is currently unavailable.");
+  }
 
   const data = (await response.json().catch(() => ({ error: "Request failed" }))) as {
     ok?: boolean;
@@ -67,7 +80,9 @@ export async function submitGiveawayEntry(payload: {
   };
 
   if (!response.ok || data.error) {
-    throw new Error(data.error || "Something went wrong. Please try again.");
+    throw new Error(
+      data.error || "Giveaway submission is currently unavailable. Please try again in a moment.",
+    );
   }
 
   return data;

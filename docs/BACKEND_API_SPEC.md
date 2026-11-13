@@ -11,6 +11,14 @@ insertion using the Supabase service-role key.
 
 Edge function path: `supabase/functions/submit-giveaway/index.ts`
 
+Runtime: Supabase Edge Runtime (Deno-compatible). Exported as `export default { fetch: ... }`.
+
+Auth model: public Edge Function (`auth: 'none'`, `verify_jwt = false` in `supabase/config.toml`).
+The browser calls it with the project's publishable key on the `apikey` header.
+The service-role key is read server-side with `Deno.env.get()` and used only for the DB insert.
+
+CORS: restricted to the production campaign origin (`https://giveaway.permetheon.com`) plus local dev origins.
+
 Operation name: submitGiveawayEntry
 
 Input (sent as JSON POST body):
@@ -31,15 +39,19 @@ Input (sent as JSON POST body):
 
 Behavior:
 
-1. Validate the payload server-side with the same Zod schema used on the client.
+1. Validate the payload server-side with Zod.
 2. Silently accept (return 200 OK) if the honeypot is filled or the submission is
    implausibly fast (under 3 seconds). This avoids revealing the protection to spammers.
-3. Insert only approved fields into `giveaway_entries`.
-4. Set consent and version fields from server-controlled values (`RULES_VERSION`,
+3. Normalize email to lowercase/trim server-side.
+4. Insert only approved fields into `giveaway_entries`.
+5. Set `rules_privacy_consent` to `true` from the server side.
+6. Set consent and version fields from server-controlled values (`RULES_VERSION`,
    `PRIVACY_VERSION`).
-5. Set `source_page` to `/giveaway`.
-6. Return `{ ok: true }` on success.
-7. Return a generic error message on failure without exposing database details.
+7. Set `source_page` to `/giveaway`.
+8. Return `{ ok: true }` on success.
+9. Return a generic error message on failure without exposing database details.
+10. Never store or trust client-supplied `review_status`, `admin_notes`, `duplicate_count`,
+    `email_normalized`, `rules_version`, `privacy_version`, or `source_page`.
 
 ### Client-side function
 

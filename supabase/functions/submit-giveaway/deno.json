@@ -1,0 +1,16 @@
+{
+  "tasks": {
+    "serve": {
+      "command": "supabase functions serve submit-giveaway"
+    }
+  },
+  "imports": {
+    "npm:zod": "npm:zod@^3",
+    "npm:@supabase/supabase-js": "npm:@supabase/supabase-js@^2"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": true
+  }
+}
