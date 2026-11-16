@@ -1,9 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-<<<<<<< HEAD
 import heroImage from "/giveaway-hero.svg";
-=======
-import devices from "@/assets/giveaway-devices.jpg";
->>>>>>> origin/main
 import { EntryForm } from "@/components/giveaway/EntryForm";
 import {
   Accordion,
@@ -74,14 +70,11 @@ const PRIZES = [
   ],
   ["06", "Launch assistance", "Support getting your website live on your domain and hosting."],
   ["07", "Basic handover guidance", "A walkthrough so you know how to manage the essentials."],
-<<<<<<< HEAD
   [
     "08",
     "Domain and hosting responsibility",
     "The winner covers domain, hosting, and paid third-party service costs unless separately agreed in writing.",
   ],
-=======
->>>>>>> origin/main
 ] as const;
 
 const EXCLUDED = [
@@ -281,7 +274,6 @@ function GiveawayPage() {
               </dl>
             </div>
             <div className="animate-rise [animation-delay:150ms]">
-<<<<<<< HEAD
               <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-soft)]">
                 <img
                   src={heroImage}
@@ -292,16 +284,6 @@ function GiveawayPage() {
                   fetchPriority="high"
                 />
               </div>
-=======
-              <img
-                src={devices}
-                width={1600}
-                height={1104}
-                alt="Grayscale business website shown on a laptop, tablet, and smartphone"
-                className="w-full rounded-sm shadow-[var(--shadow-soft)]"
-                fetchPriority="high"
-              />
->>>>>>> origin/main
             </div>
           </div>
         </section>
@@ -312,30 +294,17 @@ function GiveawayPage() {
             <SectionHead eyebrow="The prize" title="What the Winner Receives" />
             <ul className="mt-14 grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
               {PRIZES.map(([n, t, d]) => (
-<<<<<<< HEAD
                 <li
                   key={n}
                   className="bg-card p-8 transition hover:bg-muted"
                 >
-=======
-                <li key={n} className="bg-card p-8 transition hover:bg-muted">
->>>>>>> origin/main
                   <span className="font-display text-3xl text-muted-foreground">{n}</span>
                   <h3 className="mt-6 text-lg font-semibold">{t}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
                 </li>
               ))}
-<<<<<<< HEAD
             </ul>
 
-=======
-              <li className="flex flex-col justify-end bg-primary p-8 lg:col-span-2 text-primary-foreground">
-                <p className="text-sm leading-relaxed opacity-80">
-                  The winner pays domain and hosting costs.
-                </p>
-              </li>
-            </ul>
->>>>>>> origin/main
             <div className="mt-10 rounded-sm border border-border bg-muted p-8">
               <h3 className="text-base font-semibold">Not included unless separately agreed</h3>
               <ul className="mt-4 flex flex-wrap gap-2">

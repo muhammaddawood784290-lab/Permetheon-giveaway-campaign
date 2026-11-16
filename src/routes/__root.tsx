@@ -97,11 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-<<<<<<< HEAD
       { rel: "icon", href: "/permetheon-mark.png", type: "image/png" },
-=======
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
->>>>>>> origin/main
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

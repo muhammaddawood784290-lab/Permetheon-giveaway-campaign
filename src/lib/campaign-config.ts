@@ -14,14 +14,8 @@
 // a custom domain or path is confirmed.
 export const CAMPAIGN_URL = "/";
 
-<<<<<<< HEAD
 // Confirmed campaign contact email.
 export const SUPPORT_EMAIL = "businessinquiry@permetheon.com";
-=======
-// Support email — do NOT use info@permetheon.com unless explicitly confirmed.
-// Keep blank until the team provides the real address.
-export const SUPPORT_EMAIL = "";
->>>>>>> origin/main
 
 // Campaign contact name — person/role entrants can contact. Leave blank until confirmed.
 export const CAMPAIGN_CONTACT_NAME = "";

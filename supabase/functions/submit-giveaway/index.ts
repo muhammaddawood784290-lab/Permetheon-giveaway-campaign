@@ -159,13 +159,10 @@ const ALLOWED_ORIGINS = new Set([
   "https://giveaway.permetheon.com",
   "http://localhost:5173",
   "http://127.0.0.1:5173",
-<<<<<<< HEAD
   "http://localhost:8080",
   "http://127.0.0.1:8080",
   "http://localhost:8081",
   "http://127.0.0.1:8081",
-=======
->>>>>>> origin/main
 ]);
 
 function originAllowed(origin: string | null): boolean {

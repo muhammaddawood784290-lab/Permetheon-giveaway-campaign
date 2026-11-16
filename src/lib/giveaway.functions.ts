@@ -2,20 +2,14 @@ import { entrySchema } from "./giveaway.schema";
 
 declare global {
   interface Window {
-<<<<<<< HEAD
     __SUPABASE_EDGE_FUNCTION_URL?: string;
     __SUPABASE_PUBLISHABLE_KEY?: string;
-=======
-    __SUPABASE_URL?: string;
-    __SUPABASE_EDGE_FUNCTION_URL?: string;
->>>>>>> origin/main
   }
 }
 
 /**
  * Submit a giveaway entry directly to the public Supabase Edge Function.
  *
-<<<<<<< HEAD
  * This is a client-side function because the static deployment target cannot run
  * server functions. The Edge Function handles server-side validation, spam
  * protection, and database insertion with the service-role key.
@@ -23,35 +17,16 @@ declare global {
  * The browser calls the public Edge Function with the project's publishable key
  * on the `apikey` header. The service-role key is never used here and is never
  * exposed to the browser.
-=======
- * This is a client-side function because the Hostinger deployment target is
- * static-only — TanStack Start server functions cannot run there. The Edge
- * Function (supabase/functions/submit-giveaway) handles server-side validation,
- * spam protection, and database insertion with the service-role key.
- *
- * The browser calls the public Edge Function with the project's publishable key
- * on the `apikey` header. The service-role key is never used in this file and
- * never exposed to the browser.
->>>>>>> origin/main
  *
  * Required public configuration:
  * - SUPABASE_EDGE_FUNCTION_URL or window.__SUPABASE_EDGE_FUNCTION_URL
  *
-<<<<<<< HEAD
  * Optional config (used only for the "not configured" guard, not for the call):
  * - SUPABASE_PUBLISHABLE_KEY or window.__SUPABASE_PUBLISHABLE_KEY
  *
  * When the Edge Function URL is missing or the function is unreachable, this
  * throws a generic, user-safe error so the frontend can show a controlled
  * "submission is currently unavailable" message instead of leaking internals.
-=======
- * Optional config (used only for the “not configured” guard, not for the call):
- * - SUPABASE_URL or window.__SUPABASE_URL
- *
- * When the Edge Function URL is missing or the function is unreachable, this
- * throws a generic, user-safe error so the frontend can show a controlled
- * “submission is currently unavailable” message instead of leaking internals.
->>>>>>> origin/main
  */
 export async function submitGiveawayEntry(payload: {
   fullName: string;
@@ -69,10 +44,7 @@ export async function submitGiveawayEntry(payload: {
   startedAt: number;
 }) {
   const edgeFunctionUrl =
-<<<<<<< HEAD
     import.meta.env.VITE_SUPABASE_EDGE_FUNCTION_URL ||
-=======
->>>>>>> origin/main
     process.env["SUPABASE_EDGE_FUNCTION_URL"] ||
     (typeof window !== "undefined" ? window.__SUPABASE_EDGE_FUNCTION_URL : undefined) ||
     "";
@@ -95,13 +67,10 @@ export async function submitGiveawayEntry(payload: {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-<<<<<<< HEAD
         "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
           process.env["SUPABASE_PUBLISHABLE_KEY"] ||
           (typeof window !== "undefined" ? window.__SUPABASE_PUBLISHABLE_KEY : undefined) ||
           "",
-=======
->>>>>>> origin/main
       },
       body: JSON.stringify(payload),
     });

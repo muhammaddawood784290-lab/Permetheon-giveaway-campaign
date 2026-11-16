@@ -27,7 +27,3 @@ The initial campaign blueprint is available in `Permetheon_US_Giveaway_Campaign_
 - Do not commit `.env` files or service-role keys.
 - Public visitors must not be able to read giveaway entries.
 - Admin data access must be protected by Supabase Auth and Row Level Security.
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main
