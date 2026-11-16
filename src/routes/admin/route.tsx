@@ -1,4 +1,4 @@
-import { createFileRoute, redirect, Link } from "@tanstack/react-router";
+import { Link, createFileRoute, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { adminSession } from "@/lib/admin/functions/session";
 import { adminEntryAuth } from "@/lib/admin/functions/entries-auth";
@@ -14,16 +14,11 @@ export const Route = createFileRoute("/admin")({
     const path = location?.pathname ?? "";
 
     // Only protect the admin entries area (/admin/entries and /admin/entries/$id).
-    // /admin/login stays publicly reachable, and the public / index route is
-    // handled by its own beforeLoad redirect. For non-entries routes (e.g.
-    // /admin/login), skip the session check to keep them publicly reachable.
+    // /admin/login stays publicly reachable; no session check runs on login.
     if (path.startsWith("/admin/entries")) {
-      // Server-only server-fn boundary reads the incoming request's
-      // Authorization header and reports whether a Bearer token is present.
-      // The client route file never imports @tanstack/react-start/server.
       const auth = await adminEntryAuth();
 
-      // 2. If it is missing or does not start with "Bearer ", redirect to login.
+      // If the request does not carry a Bearer token, redirect to login.
       if (!auth.hasAuth) {
         throw redirect({
           to: auth.redirectTo,
@@ -31,25 +26,30 @@ export const Route = createFileRoute("/admin")({
         });
       }
 
-      // 3. Only call getAdminSession() when a Bearer header exists.
+      // Only call getAdminSession() when a Bearer header exists.
       const session = await getAdminSession();
 
-      // 4. Preserve the existing authenticated-session and admin allowlist checks.
       if (!session?.authenticated || !session?.authorized) {
         throw redirect({ to: "/admin/login", search: { error: "unauthorized" } });
       }
       return session;
     }
 
-    // Non-entries paths: no session check; return null. Public routes handled by
-    // sibling route logic (e.g. / index.tsx beforeLoad redirect to /giveaway).
+    // Public admin pages (for example /admin/login) use their own standalone
+    // layout and must not render the protected Entries shell/header.
     return null;
   },
-  component: AdminLayout,
+  component: AdminLayoutMaybe,
 });
 
-function AdminLayout() {
+function AdminLayoutMaybe() {
   const session = Route.useLoaderData();
+
+  // Public admin pages (for example /admin/login) use their own standalone layout
+  // and must not render the protected Entries shell/header.
+  if (!session) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -63,13 +63,9 @@ function AdminLayout() {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-xs text-muted-foreground">
-              {(session as { email?: string; userId?: string } | null | undefined)?.email ??
-                `user ${(session as { userId?: string } | null | undefined)?.userId?.slice(0, 8) ?? "?"}`}
+              {session?.email ?? `user ${(session?.userId ?? "?").slice(0, 8)}`}
             </span>
-            <Link
-              to="/admin/login"
-              className="inline-flex rounded-sm border border-border px-4 py-2 text-xs font-medium text-foreground hover:bg-muted"
-            >
+            <Link to="/admin/login" className="inline-flex rounded-sm border border-border px-4 py-2 text-xs font-medium text-foreground hover:bg-muted">
               Sign out
             </Link>
           </div>
