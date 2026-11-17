@@ -1,54 +1,41 @@
-import { Link, createFileRoute, redirect } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
+import {
+  Link,
+  Outlet,
+  createFileRoute,
+  redirect,
+  useNavigate,
+  useRouter,
+} from "@tanstack/react-router";
+import { useEffect } from "react";
 import { adminSession } from "@/lib/admin/functions/session";
-import { adminEntryAuth } from "@/lib/admin/functions/entries-auth";
-
-const getAdminSession = createServerFn({ method: "GET" })
-  .validator(() => ({}))
-  .handler(async () => {
-    return adminSession();
-  });
+import { endAdminSession, startAdminSessionSync } from "@/lib/admin/session-sync";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/admin")({
   loader: async ({ location }) => {
-    const path = location?.pathname ?? "";
+    // /admin/login is the only public page under /admin; everything else needs a
+    // session, including the bare /admin path, which has no page of its own.
+    if (location.pathname.startsWith("/admin/login")) return null;
 
-    // Only protect the admin entries area (/admin/entries and /admin/entries/$id).
-    // /admin/login stays publicly reachable; no session check runs on login.
-    if (path.startsWith("/admin/entries")) {
-      const auth = await adminEntryAuth();
-
-      // If the request does not carry a Bearer token, redirect to login.
-      if (!auth.hasAuth) {
-        throw redirect({
-          to: auth.redirectTo,
-          search: auth.redirectSearch,
-        });
-      }
-
-      // Only call getAdminSession() when a Bearer header exists.
-      const session = await getAdminSession();
-
-      if (!session?.authenticated || !session?.authorized) {
-        throw redirect({ to: "/admin/login", search: { error: "unauthorized" } });
-      }
-      return session;
+    const session = await adminSession();
+    if (!session.authenticated || !session.authorized) {
+      throw redirect({ to: "/admin/login" });
     }
-
-    // Public admin pages (for example /admin/login) use their own standalone
-    // layout and must not render the protected Entries shell/header.
-    return null;
+    return session;
   },
-  component: AdminLayoutMaybe,
+  component: AdminLayout,
 });
 
-function AdminLayoutMaybe() {
+function AdminLayout() {
   const session = Route.useLoaderData();
 
-  // Public admin pages (for example /admin/login) use their own standalone layout
-  // and must not render the protected Entries shell/header.
+  // Supabase rotates the access token in the browser; mirror every rotation into
+  // the server cookie so later reloads stay authorized.
+  useEffect(() => startAdminSessionSync(), []);
+
+  // Public admin pages render standalone, without the protected shell.
   if (!session) {
-    return null;
+    return <Outlet />;
   }
 
   return (
@@ -62,12 +49,8 @@ function AdminLayoutMaybe() {
             <span className="text-xs text-muted-foreground">Admin</span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-xs text-muted-foreground">
-              {session?.email ?? `user ${(session?.userId ?? "?").slice(0, 8)}`}
-            </span>
-            <Link to="/admin/login" className="inline-flex rounded-sm border border-border px-4 py-2 text-xs font-medium text-foreground hover:bg-muted">
-              Sign out
-            </Link>
+            <span className="text-xs text-muted-foreground">{session.email ?? "admin"}</span>
+            <SignOutButton />
           </div>
         </div>
       </header>
@@ -79,10 +62,29 @@ function AdminLayoutMaybe() {
           <span className="text-muted-foreground">/</span>
           <span className="text-sm font-semibold text-foreground">Entries</span>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Protected back-office area for authorized Permetheon staff only.
-        </p>
+        <Outlet />
       </main>
     </div>
+  );
+}
+
+function SignOutButton() {
+  const router = useRouter();
+  const navigate = useNavigate();
+
+  return (
+    <Button
+      type="button"
+      variant="outline"
+      size="sm"
+      onClick={async () => {
+        // Drains pending token syncs, clears the browser session, then the cookie.
+        await endAdminSession();
+        await router.invalidate();
+        await navigate({ to: "/admin/login" });
+      }}
+    >
+      Sign out
+    </Button>
   );
 }
