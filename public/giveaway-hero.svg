@@ -1,0 +1,273 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1104" viewBox="0 0 1600 1104">
+  <defs>
+    <linearGradient id="heroBg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#2a2a2a"/>
+      <stop offset="1" stop-color="#0f0f0f"/>
+    </linearGradient>
+    <linearGradient id="uiPanel1" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#1b1b1b"/>
+      <stop offset="1" stop-color="#242424"/>
+    </linearGradient>
+    <linearGradient id="uiPanel2" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#151515"/>
+      <stop offset="1" stop-color="#1d1d1d"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#6b52ff"/>
+      <stop offset="1" stop-color="#9a85ff"/>
+    </linearGradient>
+    <linearGradient id="softBlue" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#3341ff"/>
+      <stop offset="1" stop-color="#5d8cff"/>
+    </linearGradient>
+    <linearGradient id="greenBadge" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#3bde7a"/>
+    </linearGradient>
+    <linearGradient id="charcoalBg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1f1f1f"/>
+      <stop offset="1" stop-color="#161616"/>
+    </linearGradient>
+    <radialGradient id="softGlow" cx="0.2" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#6b52ff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#6b52ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="menuShadow">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+    <filter id="softEdge">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.22"/>
+    </filter>
+    <linearGradient id="mockBrand" x1="0" x2="1" y1="0.5" y2="0.5">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#c7c7c7"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1104" fill="url(#heroBg)"/>
+  <rect width="1600" height="1104" fill="url(#softGlow)"/>
+
+  <!-- Big soft backdrop pattern: monochrome business mockup frames -->
+  <g opacity="0.18">
+    <rect x="120" y="120" width="320" height="200" rx="14" fill="#ffffff" transform="rotate(-5 280 220)"/>
+    <rect x="220" y="260" width="320" height="180" rx="14" fill="#ffffff" transform="rotate(2 380 350)"/>
+    <rect x="1200" y="380" width="360" height="220" rx="16" fill="#ffffff" transform="rotate(4 1180 490)"/>
+    <rect x="1300" y="200" width="320" height="200" rx="14" fill="#ffffff" transform="rotate(-3 1460 300)"/>
+    <rect x="420" y="640" width="320" height="200" rx="14" fill="#ffffff" transform="rotate(-2 580 740)"/>
+    <rect x="1040" y="680" width="320" height="200" rx="14" fill="#ffffff" transform="rotate(3 1200 780)"/>
+  </g>
+
+  <!-- Left-side content block -->
+  <g filter="url(#softEdge)">
+    <rect x="90" y="170" width="720" height="760" rx="26" fill="#1a1a1a"/>
+  </g>
+
+  <!-- Eyebrow + headline card row -->
+  <g>
+    <rect x="118" y="200" width="670" height="172" rx="16" fill="#3a3346" opacity="0.85"/>
+    <rect x="118" y="200" width="6" height="172" rx="3" fill="url(#accentGrad)"/>
+
+    <text x="148" y="242" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#b7b0d0" letter-spacing="0.18em" font-weight="600">PERMETHEON WEBSITE GIVEAWAY</text>
+
+    <text x="146" y="278" font-family="'Georgia', 'Times New Roman', serif" font-size="54" font-weight="600" fill="#ffffff">
+Give Your Business a Stronger Digital Foundation.
+      </text>
+
+    <text x="148" y="322" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" fill="#c9c9cf" leading="1.5">
+One eligible US business, startup, or entrepreneur receives a professional business website with basic SEO.
+    </text>
+
+    <!-- CTA pair -->
+    <g transform="translate(148, 370)">
+      <rect width="262" height="56" rx="10" fill="#ffffff"/>
+      <text x="46" y="33" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#12121a">Enter the Giveaway</text>
+      <rect x="6" y="6" width="250" height="44" rx="8" stroke="#d2d2d2" stroke-opacity="0.4" fill="none" opacity="0.3"/>
+    </g>
+    <g transform="translate(420, 370)">
+      <rect width="262" height="56" rx="10" fill="#25252a"/>
+      <text x="26" y="33" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#e3e1ee">See What’s Included</text>
+      <rect x="6" y="6" width="250" height="44" rx="8" fill="#3a3a42" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- Date highlights -->
+  <g transform="translate(118, 470)">
+    <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#b3b3bc" letter-spacing="0.18em" font-weight="600">ENTRIES CLOSE</text>
+    <text x="0" y="28" font-family="'Georgia', 'Times New Roman', serif" font-size="24" fill="#ffffff" font-weight="600">March 31, 2026</text>
+
+    <text x="360" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#b3b3bc" letter-spacing="0.18em" font-weight="600">WINNER ANNOUNCED</text>
+    <text x="360" y="28" font-family="'Georgia', 'Times New Roman', serif" font-size="24" fill="#ffffff" font-weight="600">April 10, 2026</text>
+  </g>
+
+  <!-- Right-side mockup illustration -->
+  <g filter="url(#cardShadow)">
+    <rect x="892" y="120" width="1380" height="900" rx="22" fill="#0b0b0b"/>
+  </g>
+
+  <rect x="892" y="120" width="1380" height="900" rx="22" fill="url(#charcoalBg)"/>
+
+  <!-- Mock top bar -->
+  <rect x="908" y="150" width="34" height="12" rx="3" fill="#39393f"/>
+  <g transform="translate(1088, 150)">
+    <rect width="344" height="40" fill="url(#uiPanel1)"/>
+    <g transform="translate(20, 10)">
+      <text x="0" y="0" font-family='ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' font-size="13" fill="#ffffff" letter-spacing="0.2em" font-weight="700">PERMETHEON</text>
+    </g>
+    <g transform="translate(368, 14)">
+      <circle cx="10" cy="10" r="9" fill="#2a2a2a" stroke="#4b4b4f"/>
+      <circle cx="10" cy="10" r="3" fill="#6b52ff"/>
+    </g>
+  </g>
+
+  <!-- Mock nav -->
+  <g transform="translate(908, 208)">
+    <g fill="#bdbaba" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14">
+      <text x="0" y="0">Home</text>
+      <text x="96" y="0" fill="#ffffff" font-weight="600">Services</text>
+      <text x="236" y="0">Portfolio</text>
+      <text x="368" y="0">About</text>
+    </g>
+    <g transform="translate(468, 0)">
+      <rect x="0" y="-9" width="132" height="34" rx="8" fill="#6b52ff"/>
+      <text x="46" y="4" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600" text-anchor="middle">View work</text>
+    </g>
+  </g>
+
+  <!-- Hero mock content area -->
+  <g transform="translate(908, 262)">
+    <rect width="1356" height="260" rx="14" fill="#1b1b1b"/>
+    <rect x="28" y="28" width="1300" height="40" rx="8" fill="#0e0e0e"/>
+    <rect x="48" y="42" width="180" height="16" rx="6" fill="#333337"/>
+    <rect x="240" y="42" width="120" height="16" rx="6" fill="#2b2b2f"/>
+    <rect x="372" y="42" width="90" height="16" rx="6" fill="#2b2b2f"/>
+    <rect x="474" y="42" width="56" height="16" rx="8" fill="#6b52ff"/>
+
+    <text x="28" y="104" font-family="'Georgia', 'Times New Roman', serif" font-size="44" font-weight="600" fill="#ffffff">
+Permetheon Digital Solutions
+    </text>
+    <text x="28" y="132" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" fill="#b7b0d0">
+We build websites, software, and digital growth systems for US businesses.
+    </text>
+    <rect x="28" y="156" width="450" height="8" rx="4" fill="#3a3346"/>
+    <rect x="28" y="172" width="320" height="8" rx="4" fill="#2c2c33"/>
+    <rect x="28" y="188" width="390" height="8" rx="4" fill="#2c2c33"/>
+
+    <rect x="28" y="222" width="330" height="96" rx="12" fill="#0b0b0b"/>
+    <g transform="translate(44, 240)">
+      <rect width="278" height="70" rx="10" fill="url(#uiPanel2)"/>
+      <rect x="0" y="0" width="6" height="70" fill="#3a3346"/>
+      <text x="18" y="22" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">Services</text>
+      <text x="18" y="44" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b7b0d0">Websites · Software · Growth</text>
+      <text x="18" y="62" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#6b52ff">Learn more</text>
+    </g>
+    <g transform="translate(390, 240)">
+      <rect width="278" height="70" rx="10" fill="url(#uiPanel2)"/>
+      <rect x="0" y="0" width="6" height="70" fill="#3a3346"/>
+      <text x="18" y="22" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">Case Studies</text>
+      <text x="18" y="44" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b7b0d0">Results from real clients</text>
+      <text x="18" y="62" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#6b52ff">Read stories</text>
+    </g>
+  </g>
+
+  <!-- Mock middle section: services -->
+  <g transform="translate(908, 542)">
+    <rect width="1356" height="120" rx="14" fill="#121212"/>
+    <text x="28" y="44" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#b3b3bc" letter-spacing="0.18em" font-weight="600">WHAT WE BUILD</text>
+    <g transform="translate(28, 70)">
+      <g transform="translate(0, 0)">
+        <circle cx="18" cy="18" r="18" fill="#3a3346"/>
+        <text x="18" y="23" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="700">W</text>
+        <text x="44" y="22" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">Website</text>
+        <text x="44" y="39" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b7b0d0">Responsive, fast, credible</text>
+      </g>
+      <g transform="translate(200, 0)">
+        <circle cx="18" cy="18" r="18" fill="#3a3346"/>
+        <text x="18" y="23" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="700">S</text>
+        <text x="44" y="22" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">Software</text>
+        <text x="44" y="39" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b7b0d0">Built for how you work</text>
+      </g>
+      <g transform="translate(400, 0)">
+        <circle cx="18" cy="18" r="18" fill="#3a3346"/>
+        <text x="18" y="23" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="700">G</text>
+        <text x="44" y="22" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">Growth</text>
+        <text x="44" y="39" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b7b0d0">SEO · CRM · analytics</text>
+      </g>
+      <g transform="translate(600, 0)">
+        <circle cx="18" cy="18" r="18" fill="url(#accentGrad)"/>
+        <text x="18" y="23" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="700">B</text>
+        <text x="44" y="22" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">Brand identity</text>
+        <text x="44" y="39" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#e3e1ee">Look better, stand out</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Mock chart strip -->
+  <g transform="translate(908, 682)">
+    <rect width="1356" height="120" rx="14" fill="#1b1b1b"/>
+    <rect x="28" y="28" width="1236" height="88" rx="10" fill="#0b0b0b"/>
+    <g transform="translate(60, 78)" fill="#6b52ff" opacity="0.95">
+      <rect x="0" y="20" width="18" height="58" rx="4"/>
+      <rect x="26" y="6" width="18" height="74" rx="4"/>
+      <rect x="52" y="28" width="18" height="52" rx="4"/>
+      <rect x="78" y="10" width="18" height="70" rx="4"/>
+      <rect x="104" y="0" width="18" height="80" rx="4"/>
+    </g>
+    <g transform="translate(180, 78)" fill="#6b52ff" opacity="0.5">
+      <rect x="0" y="30" width="18" height="48" rx="4"/>
+      <rect x="26" y="20" width="18" height="58" rx="4"/>
+      <rect x="52" y="38" width="18" height="40" rx="4"/>
+      <rect x="78" y="14" width="18" height="64" rx="4"/>
+      <rect x="104" y="26" width="18" height="54" rx="4"/>
+    </g>
+    <g transform="translate(300, 78)" fill="#6b52ff" opacity="0.85">
+      <rect x="0" y="8" width="18" height="72" rx="4"/>
+      <rect x="26" y="2" width="18" height="78" rx="4"/>
+      <rect x="52" y="16" width="18" height="64" rx="4"/>
+      <rect x="78" y="10" width="18" height="70" rx="4"/>
+      <rect x="104" y="0" width="18" height="80" rx="4"/>
+    </g>
+    <text x="60" y="112" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b7b0d0">Mon</text>
+    <text x="182" y="112" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b7b0d0">Tue</text>
+    <text x="302" y="112" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b7b0d0">Wed</text>
+  </g>
+
+  <!-- Mock footer within mockup -->
+  <g transform="translate(908, 822)">
+    <rect width="1356" height="196" rx="14" fill="#0b0b0b"/>
+    <rect x="28" y="28" width="1296" height="1" fill="#333337"/>
+    <g transform="translate(28, 56)">
+      <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#b3b3bc" letter-spacing="0.18em" font-weight="600">SERVICES</text>
+      <text x="150" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#d2d2d2">Design</text>
+      <text x="240" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#d2d2d2">Development</text>
+    </g>
+    <g transform="translate(28, 92)">
+      <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#d2d2d2">SEO</text>
+      <text x="86" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#d2d2d2">CRM</text>
+      <text x="156" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#d2d2d2">Analytics</text>
+    </g>
+    <g transform="translate(780, 56)">
+      <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#b3b3bc" letter-spacing="0.18em" font-weight="600">COMPANY</text>
+      <text x="130" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#d2d2d2">About</text>
+      <text x="218" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#d2d2d2">Contact</text>
+    </g>
+    <g transform="translate(1180, 56)">
+      <circle cx="12" cy="12" r="12" fill="#3a3346"/>
+      <circle cx="48" cy="12" r="12" fill="#3a3346"/>
+      <circle cx="84" cy="12" r="12" fill="#3a3346"/>
+    </g>
+    <g transform="translate(1180, 92)">
+      <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b3b3bc">LinkedIn</text>
+      <text x="70" y="0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#b3b3bc">X</text>
+    </g>
+    <text x="28" y="170" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#8b8b90">© 2026 Permetheon Digital Solutions</text>
+    <text x="28" y="188" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#8b8b90">Built for US businesses.</text>
+  </g>
+
+  <!-- Soft overlays for depth -->
+  <g opacity="0.06">
+    <ellipse cx="1130" cy="130" rx="760" ry="200" fill="#ffffff"/>
+  </g>
+</svg>
